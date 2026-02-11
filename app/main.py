@@ -1,7 +1,12 @@
 from fastapi import FastAPI
 from app.api.v1 import ingredientes, platillos
+from app.db import create_db_and_tables
 
 app = FastAPI()
+
+@app.on_event("startup")
+def on_startup():
+    create_db_and_tables()
 
 app.include_router(ingredientes.router, prefix="/api/v1", tags=["ingredientes"])
 app.include_router(platillos.router, prefix="/api/v1", tags=["platillos"])
