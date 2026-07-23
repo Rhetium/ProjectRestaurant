@@ -27,3 +27,5 @@ def get_ingredient(ingredient_id: int, db: Session = Depends(get_db)):
     if not ingredient:
         raise HTTPException(status_code=404, detail="Ingredient not found")
     return ingredient
+
+#-----------------------------------------------------------------------------
